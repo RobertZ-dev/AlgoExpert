@@ -1,4 +1,3 @@
-# O(n) time | O(1) space
 def moveElementToEnd(array, toMove):
 	i, j = 0, 0
 	while i <= (len(array) - 1):
