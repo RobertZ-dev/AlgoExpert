@@ -4,24 +4,23 @@ class LinkedList:
         self.value = value
         self.next = None
 
-
+# O(max(n,m)) time | O(max(n,m)) space
 def sumOfLinkedLists(linkedListOne, linkedListTwo):
-    num1 = listToNum(linkedListOne)
-    num2 = listToNum(linkedListTwo)
-    num3 = num1 + num2
-    str3 = str(num3)[::-1]
-    pointer = 0
-    current = result = LinkedList(0)
-    for pointer in range(len(str3)):
-        current.next = LinkedList(int(str3[pointer]))
-        current = current.next
-    return result.next
-
-
-def listToNum(linkedList):
-    pointer = linkedList
-    num2str = []
-    while pointer is not None:
-        num2str.append(str(pointer.value))
-        pointer = pointer.next
-    return int("".join(num2str[::-1]))
+    dummy = LinkedList(0)
+	current = dummy
+	carrier = 0
+	
+	nodeOne = linkedListOne
+	nodeTwo = linkedListTwo
+	while nodeOne is not None or nodeTwo is not None or carrier != 0:
+		valueOne = nodeOne.value if nodeOne is not None else 0
+		valueTwo = nodeTwo.value if nodeTwo is not None else 0
+		sumOfValue = valueOne + valueTwo + carrier
+		newValue = sumOfValue % 10
+		newNode = LinkedList(newValue)
+		current.next = newNode
+		current = newNode
+		carrier = sumOfValue // 10
+		nodeOne = nodeOne.next if nodeOne is not None else None
+		nodeTwo = nodeTwo.next if nodeTwo is not None else None
+    return dummy.next
