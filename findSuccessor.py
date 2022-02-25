@@ -6,7 +6,7 @@ class BinaryTree:
         self.right = right
         self.parent = parent
 
-# O(h) time | O(1) space
+# O(h) time | O(1) space 
 def findSuccessor(tree, node):
     if node.right is not None:
 		return getLeftmostChild(node.right)
